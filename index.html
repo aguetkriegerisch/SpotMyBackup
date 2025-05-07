@@ -267,7 +267,7 @@ function login() {
         show_dialog: 'true',
         state: state
     };
-    console.log(set)
+    console.table(set)
     authWindow = window.open(
         "https://accounts.spotify.com/authorize?" + urlEncodeSet(set),
         "Spotify",
@@ -281,9 +281,7 @@ function authCallback(event){
         console.log({ uri: conf.uri, origin: origin });
         return;
     }
-    if (authWindow) {
-        authWindow.close();
-    }
+
     handleAuth(event.data);
 }
 
@@ -310,6 +308,10 @@ function handleAuth(accessToken) {
             var user_id = response.id.toLowerCase();
             userId = user_id;
             name = user_id;
+
+            if (authWindow) {
+                authWindow.close();
+            }
 
             $('#userName').html(name);
             $('#pnlLoggedOut').hide();
