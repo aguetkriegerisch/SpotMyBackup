@@ -1,7 +1,7 @@
 config = {
-"uri":"http://localhost:8888",
-"redirect_uri":"http://localhost:8888/login.html",
-"client_id":"[YOUR_TOKEN_HERE]",
+"uri":"https://aguetkriegerisch.github.io/SpotMyBackup/",
+"redirect_uri":"https://aguetkriegerisch.github.io/SpotMyBackup/login.html",
+"client_id":"616cf70ce82f43e786a4275a12a6b9fa",
 "slowdown_import": 100,
 "slowdown_export": 100
 };
