@@ -250,7 +250,7 @@ function refreshProgress() {
         $('#filePlaylists').html(""+set2.playlistCount+" playlists");
         $('#fileTracks').html(""+set2.trackCount+" tracks");
     }
-    setTimeout(refreshProgress, 1000);
+    setTimeout(refreshProgress, 2000);
 }
 
 function login() {
@@ -267,7 +267,7 @@ function login() {
         show_dialog: 'true',
         state: state
     };
-    console.table(set)
+    console.log(set)
     authWindow = window.open(
         "https://accounts.spotify.com/authorize?" + urlEncodeSet(set),
         "Spotify",
