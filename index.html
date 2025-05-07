@@ -257,13 +257,15 @@ function login() {
     var width = 480, height = 640;
     var left = (screen.width / 2) - (width / 2);
     var top = (screen.height / 2) - (height / 2);
+    var state = Math.random().toString(36).substring(2, 2 + 16);
 
     var set = {
-      client_id: conf.client_id,
-      redirect_uri: conf.redirect_uri,
-      scope: 'playlist-read playlist-read-private playlist-modify-public playlist-modify-private user-library-read user-library-modify',
-      response_type: 'code',
-      show_dialog: 'true'
+        client_id: conf.client_id,
+        redirect_uri: conf.redirect_uri,
+        scope: 'playlist-read playlist-read-private playlist-modify-public playlist-modify-private user-library-read user-library-modify',
+        response_type: 'code',
+        show_dialog: 'true',
+        state: state
     };
     authWindow = window.open(
         "https://accounts.spotify.com/authorize?" + urlEncodeSet(set),
