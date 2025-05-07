@@ -282,6 +282,11 @@ function authCallback(event){
         return;
     }
 
+    if (authWindow) {
+        authWindow.close();
+    }
+
+
     handleAuth(event.data);
 }
 
@@ -309,10 +314,6 @@ function handleAuth(accessToken) {
             var user_id = response.id.toLowerCase();
             userId = user_id;
             name = user_id;
-
-            if (authWindow) {
-                authWindow.close();
-            }
 
             $('#userName').html(name);
             $('#pnlLoggedOut').hide();
