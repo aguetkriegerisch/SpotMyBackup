@@ -11,6 +11,7 @@
 			window.onload = function() {
 				var target = window.self === window.top ? window.opener : window.parent;
 				var hash = window.location.hash;
+				console.log(window.location.hash)
 				if (hash) {
 					console.log("hash is ",hash)
 				   var token = window.location.hash.split('&')[0].split('=')[1];

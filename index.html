@@ -286,7 +286,8 @@ function authCallback(event){
         authWindow.close();
     }
 
-
+    console.log("authCallbackEvent:")
+    console.log(event)
     handleAuth(event.data);
 }
 
