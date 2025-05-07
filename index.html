@@ -267,6 +267,7 @@ function login() {
         show_dialog: 'true',
         state: state
     };
+    console.table(set)
     authWindow = window.open(
         "https://accounts.spotify.com/authorize?" + urlEncodeSet(set),
         "Spotify",
@@ -296,6 +297,30 @@ function urlEncodeSet(set) {
     var string = comps.join("&");
     return string;
 }
+
+function handleAuth(accessToken) {
+    token = accessToken;
+    // fetch my public playlists
+    $.ajax({
+        url: 'https://api.spotify.com/v1/me',
+        headers: {
+        'Authorization': 'Bearer ' + accessToken
+        },
+        success: function(response) {         
+            var user_id = response.id.toLowerCase();
+            userId = user_id;
+            name = user_id;
+
+            $('#userName').html(name);
+            $('#pnlLoggedOut').hide();
+
+            refreshTrackData(function () {                   
+                $('#pnlAction').show();
+            });
+        }
+    });
+}
+
 
 function download(filename, text) {
     var pom = document.createElement('a');
@@ -604,29 +629,6 @@ function bindControls() {
         download(name+time+'.json', json);
     });
     $('#fileImport').change(readFile);
-}
-
-function handleAuth(accessToken) {
-    token = accessToken;
-    // fetch my public playlists
-    $.ajax({
-        url: 'https://api.spotify.com/v1/me',
-        headers: {
-        'Authorization': 'Bearer ' + accessToken
-        },
-        success: function(response) {         
-            var user_id = response.id.toLowerCase();
-            userId = user_id;
-            name = user_id;
-
-            $('#userName').html(name);
-            $('#pnlLoggedOut').hide();
-
-            refreshTrackData(function () {                   
-                $('#pnlAction').show();
-            });
-        }
-    });
 }
 
 function refreshMyMusicTracks(callback) {
